@@ -154,6 +154,20 @@
       color: var(--primary);
     }
 
+    /* Premium CTA button style */
+    .btn-cta{
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      border: 1px solid rgba(212,175,55,0.95);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    }
+    .btn-cta:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.22);
+    }
+
     .contact-section {
       padding: 30px 20px;
       text-align: center;
@@ -280,8 +294,10 @@
     <div style="font-size: 13px; color: #718096; font-weight: 600;">ESTIMATED TOTAL (CAD)</div>
     <div id="display_total" class="total-price">$ 0.00</div>
 
-    <button class="btn btn-copy" onclick="copyQuote()">Copy quote to send Emma</button>
-    <a id="emailLink" href="#" class="btn btn-email" onclick="sendEmail()">📧 Email to book a consultation</a>
+    <button class="btn btn-copy" type="button" onclick="copyQuote()">Copy quote to send Emma</button>
+
+    <!-- Replaces email: premium CTA + copy-to-clipboard -->
+    <button class="btn btn-email btn-cta" type="button" onclick="copyLead()">Book now — Get a tax plan</button>
   </div>
 
   <div class="contact-section">
@@ -297,7 +313,6 @@
 
   <div style="background:var(--primary); padding:25px; text-align:center; font-size:11px; color:#999; line-height:1.6;">
     <strong style="color:var(--accent)">FlowFin Financial Inc.</strong><br>
-    Email: Emmaji9898@gmail.com<br>
     * Final pricing will be confirmed after reviewing source documents and issuing an official Engagement Letter.
   </div>
 </div>
@@ -353,7 +368,7 @@
 I used your online quote tool. My estimated total is ${total} CAD.
 
 I'd like to discuss next steps.`;
-    navigator.clipboard.writeText(text).then(() => alert('Quote copied! You can paste it to Emma.'));
+    navigator.clipboard.writeText(text).then(() => alert('Quote copied!'));
   }
 
   function copyWeChat() {
@@ -361,27 +376,11 @@ I'd like to discuss next steps.`;
     navigator.clipboard.writeText(id).then(() => alert(`WeChat ID copied: ${id}`));
   }
 
-  function sendEmail() {
-    const total = document.getElementById('display_total').innerText; // e.g. "$ 1,234.00"
-    const email = "Emmaji9898@gmail.com";
-
-    const subjectText = `Cross-border Tax Consultation - Estimate ${total}`;
-    const bodyText =
-`Hi Emma,
-
-I used your online quote tool and my estimated total is ${total} CAD.
-
-I'd like to book a consultation to discuss next steps.
-
-Name:
-Phone:
-Preferred time (time zone):
-Brief notes:`;
-
-    const subject = encodeURIComponent(subjectText);
-    const body = encodeURIComponent(bodyText);
-
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+  // Premium CTA: copy a very short “ready to proceed” message
+  function copyLead() {
+    const total = document.getElementById('display_total').innerText;
+    const msg = `Ready to proceed. Estimate: ${total} CAD.`;
+    navigator.clipboard.writeText(msg).then(() => alert('Copied.'));
   }
 
   calculateAll();
