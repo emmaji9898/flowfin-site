@@ -51,15 +51,27 @@
       display: block;
     }
 
-    /* Single line title (not ALL CAPS) */
+    /* Single line title: must stay one-line on mobile */
     .firm-name {
       font-family: Cinzel, Georgia, 'Times New Roman', serif;
       font-size: 22px;
       font-weight: 800;
       color: var(--accent);
-      letter-spacing: 0.6px;      /* requested: 0.6 */
+      letter-spacing: 0.6px;
       margin: 6px 0 0;
-      text-transform: none;        /* requested: no ALL CAPS */
+      text-transform: none;
+
+      white-space: nowrap;     /* force one line */
+      overflow: hidden;        /* avoid layout break */
+      text-overflow: ellipsis; /* safety: extremely small screens */
+    }
+
+    /* Mobile: shrink to keep one line */
+    @media (max-width: 420px) {
+      .firm-name { font-size: 18px; letter-spacing: 0.3px; }
+    }
+    @media (max-width: 360px) {
+      .firm-name { font-size: 16px; letter-spacing: 0.2px; }
     }
 
     .calculator-head {
@@ -181,7 +193,6 @@
       border: 1px solid rgba(212,175,55,0.85);
       box-shadow: 0 10px 30px rgba(0,0,0,0.18);
     }
-
     .btn-copy:hover { transform: translateY(-1px); }
 
     /* Premium CTA button */
@@ -193,9 +204,8 @@
       font-family: Cinzel, Georgia, 'Times New Roman', serif;
       font-size: 13px;
       letter-spacing: 1.0px;
-      text-transform: none; /* keep readable */
+      text-transform: none;
     }
-
     .btn-cta:hover {
       transform: translateY(-1px);
       box-shadow: 0 20px 55px rgba(0,0,0,0.22);
@@ -240,7 +250,6 @@
       color: #9aa0a6;
       line-height: 1.6;
     }
-
     .footer-note strong { color: rgba(212,175,55,0.95); }
   </style>
 </head>
@@ -249,7 +258,7 @@
   <div class="container">
     <div class="brand-header">
       <img src="assets/logo.png" alt="FlowFin Financial Inc." class="logo-placeholder">
-      <h1 class="firm-name">Tax • Accounting • Insurance</h1>
+      <h1 class="firm-name">Tax &amp; Wealth Planning</h1>
     </div>
 
     <div class="calculator-head">Smart Quote Tool | 2026 Edition</div>
