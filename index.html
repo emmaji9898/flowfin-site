@@ -51,15 +51,15 @@
       display: block;
     }
 
-    /* Only keep ONE line here (requested) */
+    /* Single line title (not ALL CAPS) */
     .firm-name {
       font-family: Cinzel, Georgia, 'Times New Roman', serif;
       font-size: 22px;
       font-weight: 800;
       color: var(--accent);
-      letter-spacing: 1.2px;
+      letter-spacing: 0.6px;      /* requested: 0.6 */
       margin: 6px 0 0;
-      text-transform: uppercase;
+      text-transform: none;        /* requested: no ALL CAPS */
     }
 
     .calculator-head {
@@ -69,8 +69,7 @@
       text-align: center;
       font-size: 13px;
       font-weight: 800;
-      letter-spacing: .8px;
-      text-transform: uppercase;
+      letter-spacing: .4px;
     }
 
     .tabs {
@@ -185,7 +184,7 @@
 
     .btn-copy:hover { transform: translateY(-1px); }
 
-    /* Premium CTA button (requested text) */
+    /* Premium CTA button */
     .btn-cta {
       background: linear-gradient(180deg, rgba(212,175,55,1) 0%, rgba(198,155,40,1) 100%);
       color: #121212;
@@ -193,8 +192,8 @@
       box-shadow: 0 16px 45px rgba(0,0,0,0.18);
       font-family: Cinzel, Georgia, 'Times New Roman', serif;
       font-size: 13px;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
+      letter-spacing: 1.0px;
+      text-transform: none; /* keep readable */
     }
 
     .btn-cta:hover {
@@ -250,15 +249,14 @@
   <div class="container">
     <div class="brand-header">
       <img src="assets/logo.png" alt="FlowFin Financial Inc." class="logo-placeholder">
-      <!-- Only keep this ONE line -->
-      <h1 class="firm-name">Cross-Border Tax • Trust • Insurance</h1>
+      <h1 class="firm-name">Tax • Accounting • Insurance</h1>
     </div>
 
     <div class="calculator-head">Smart Quote Tool | 2026 Edition</div>
 
     <div class="content" style="padding-bottom: 0;">
       <div class="multiplier-box">
-        <label style="font-weight:800; color:#111; font-size:12px; letter-spacing:.4px; text-transform:uppercase;">Complexity Multiplier</label>
+        <label style="font-weight:800; color:#111; font-size:12px; letter-spacing:.4px;">Complexity Multiplier</label>
         <select id="globalMultiplier"
                 style="width: 100%; margin-top:8px; height: 40px; border-radius: 10px;"
                 onchange="calculateAll()">
@@ -339,18 +337,18 @@
         </div>
 
         <p style="font-size: 12px; color: var(--muted); line-height: 1.5; margin-top: 6px;">
-          * Includes cross-border structuring, tax residency review, and trust/estate planning guidance.
+          * Includes structuring, residency review, and trust/estate planning guidance.
           Final scope depends on complexity and supporting documents.
         </p>
       </div>
     </div>
 
     <div class="result-panel">
-      <div style="font-size: 12px; color: var(--muted); font-weight: 800; letter-spacing:.7px; text-transform:uppercase;">Estimated Total (CAD)</div>
+      <div style="font-size: 12px; color: var(--muted); font-weight: 800; letter-spacing:.4px;">Estimated Total (CAD)</div>
       <div id="display_total" class="total-price">$ 0.00</div>
 
       <button class="btn btn-copy" type="button" onclick="copyQuote()">Copy quote</button>
-      <button class="btn btn-cta" type="button" onclick="copyLead()">BOOK NOW — MORE VALUE</button>
+      <button class="btn btn-cta" type="button" onclick="copyLead()">Book now — more value</button>
     </div>
 
     <div class="contact-section">
@@ -434,7 +432,7 @@ Next steps?`;
 
     function copyLead() {
       const total = document.getElementById('display_total').innerText;
-      const msg = `Book now. Estimate: ${total} CAD.`;
+      const msg = `Ready to proceed. Estimate: ${total} CAD.`;
       navigator.clipboard.writeText(msg).then(() => alert('Copied.'));
     }
 
